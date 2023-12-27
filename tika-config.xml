@@ -1,83 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <properties>
   <parsers>
     <parser class="org.apache.tika.parser.DefaultParser">
-      <parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser" />
-      <parser-exclude class="org.apache.tika.parser.csv.TextAndCSVParser" />
-      <parser-exclude class="org.apache.tika.parser.html.HtmlParser" />
-      <parser-exclude class="org.apache.tika.parser.microsoft.OfficeParser" />
-      <parser-exclude class="org.apache.tika.parser.microsoft.ooxml.OOXMLParser" />
-      <parser-exclude class="org.apache.tika.parser.pdf.PDFParser" />
-    </parser>
-    <parser class="org.apache.tika.parser.csv.TextAndCSVParser">
-      <params>
-        <param name="minConfidence" type="double">0.5</param>
-      </params>
-    </parser>
-    <parser class="org.apache.tika.parser.html.HtmlParser">
-      <params>
-        <param name="extractScripts" type="bool">false</param>
-      </params>
-    </parser>
-    <parser class="org.apache.tika.parser.microsoft.OfficeParser">
-      <params>
-        <param name="extractMacros" type="bool">false</param>
-        <param name="includeDeletedContent" type="bool">false</param>
-        <param name="includeMoveFromContent" type="bool">false</param>
-        <param name="includeShapeBasedContent" type="bool">false</param>
-        <param name="includeHeadersAndFooters" type="bool">true</param>
-        <param name="includeMissingRows" type="bool">false</param>
-        <param name="includeSlideNotes" type="bool">true</param>
-        <param name="includeSlideMasterContent" type="bool">true</param>
-        <param name="concatenatePhoneticRuns" type="bool">false</param>
-        <param name="useSAXDocxExtractor" type="bool">true</param>
-        <param name="useSAXPptxExtractor" type="bool">true</param>
-        <param name="dateOverrideFormat" type="string">dd-mm-yyyy</param>
-      </params>
-    </parser>
-    <parser class="org.apache.tika.parser.microsoft.ooxml.OOXMLParser">
-      <params>
-        <param name="extractMacros" type="bool">false</param>
-        <param name="includeDeletedContent" type="bool">false</param>
-        <param name="includeMoveFromContent" type="bool">false</param>
-        <param name="includeShapeBasedContent" type="bool">false</param>
-        <param name="includeHeadersAndFooters" type="bool">true</param>
-        <param name="includeMissingRows" type="bool">false</param>
-        <param name="includeSlideNotes" type="bool">true</param>
-        <param name="includeSlideMasterContent" type="bool">true</param>
-        <param name="concatenatePhoneticRuns" type="bool">false</param>
-        <param name="useSAXDocxExtractor" type="bool">true</param>
-        <param name="useSAXPptxExtractor" type="bool">true</param>
-        <param name="dateOverrideFormat" type="string">dd-mm-yyyy</param>
-      </params>
+      <!-- this is not formally necessary, but prevents loading of unnecessary parser -->
+      <parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
     </parser>
     <parser class="org.apache.tika.parser.ocr.TesseractOCRParser">
       <params>
-        <param name="language" type="string">eng+tur+rus+ara+chi_sim+kor+jpn+kat+grc+heb+hin</param>
-        <param name="timeout" type="int">120</param>
-        <param name="outputType" type="string">txt</param>
-        <param name="enableImageProcessing" type="int">1</param>
-        <param name="applyRotation" type="bool">true</param>
-      </params>
-    </parser>
-    <parser class="org.apache.tika.parser.pdf.PDFParser">
-      <params>
-        <param name="ocrDPI" type="int">300</param>
-        <param name="extractBookmarksText" type="bool">false</param>
-        <param name="ocrStrategy" type="string">auto</param>
-        <param name="ocrStrategyAuto" type="string">better</param>
-        <param name="ocrImageType" type="string">gray</param>
+        <param name="applyRotation" type="bool">false</param>
+        <param name="colorSpace" type="string">gray</param>
+        <param name="density" type="int">300</param>
+        <param name="depth" type="int">4</param>
+        <param name="enableImagePreprocessing" type="bool">false</param>
+        <param name="filter" type="string">triangle</param>
+        <param name="language" type="string">eng</param>
+        <param name="maxFileSizeToOcr" type="long">2147483647</param>
+        <param name="minFileSizeToOcr" type="long">0</param>
+        <param name="pageSegMode" type="string">1</param>
+        <param name="pageSeparator" type="string"></param>
+        <param name="preserveInterwordSpacing" type="bool">false</param>
+        <param name="resize" type="int">200</param>
+        <param name="skipOcr" type="bool">false</param>
+        <param name="timeoutSeconds" type="int">120</param>
       </params>
     </parser>
   </parsers>
-  <server>
-    <params>
-      <port>9998</port>
-      <host>localhost</host>
-      <id></id>
-      <cors>http://localhost:3000</cors>
-      <digest>sha256</digest>
-      <digestMarkLimit>1000000</digestMarkLimit>
-    </params>
-  </server>
 </properties>
